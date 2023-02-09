@@ -1,0 +1,17 @@
+#task-container{
+    padding-top: 1%;
+    padding-left: 15%;
+    background-color: whitesmoke;
+    display: flex;
+    flex-flow: row wrap;
+
+}
+
+#exampleModalLabel{
+    text-align: center;
+}
+#card-lista{
+    margin-right: 5%;
+    margin-top: 1%;
+}
+

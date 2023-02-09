@@ -2,8 +2,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
-import { } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"
-import { getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"
+
+import { getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,9 +27,14 @@ const analytics = getAnalytics(app);
 //bd init
 const db = getFirestore();
 
+// sesiones auth 
+//registro de users
+export const auth = getAuth(app)
+
+
 //insert
-export const saveTask = (title, description) => {
-  addDoc(collection(db, 'tasks'), { title: title, description: description });
+export const saveTask = (nombres, edad, genero, lugarNac, dni) => {
+  addDoc(collection(db, 'tasks'), { nombresC: nombres, edad: edad, sexo: genero, lugar: lugarNac, dni: dni });
 
   console.log("Document written with ID: ", saveTask.id);
 }
@@ -40,5 +46,15 @@ export const getAll = () => getDocs(collection(db, "tasks"));
 export const onGetTasks = () => console.log('snap');
 
 export { onSnapshot, collection, db }
-
+//delete x id
 export const deleteTask = (id) => deleteDoc(doc(db, 'tasks', id));
+
+// buscar task por id
+export const getTask = (id) => getDoc(doc(db, 'tasks', id));
+
+//update
+export const updateTask = (id, newFields) => updateDoc(doc(db, 'tasks', id), newFields)
+
+
+
+
